@@ -77,7 +77,7 @@ export function StackView() {
   return (
     <div className="pb-12 overflow-hidden flex flex-col h-full w-full justify-center">
       <div className="mb-10 lg:mb-14 font-mono text-sm sm:text-base text-muted-foreground shrink-0">
-        <span className="text-primary font-bold">~/josh</span> ${" "}
+        <span className="text-primary font-bold">~/cheenu</span> ${" "}
         <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>

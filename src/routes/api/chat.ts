@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { JOSH_SYSTEM_PROMPT } from "@/lib/josh-system-prompt.server";
+import { JOSH_SYSTEM_PROMPT } from "@/lib/cheenu-system-prompt.server";
 
 type Msg = { role: "user" | "assistant"; content: string };
 type ChatBody = { messages?: Msg[] };
@@ -135,7 +135,7 @@ export const Route = createFileRoute("/api/chat")({
           return new Response(
             JSON.stringify({
               error: "blocked",
-              message: "That kind of message isn't something josh.ai can help with.",
+              message: "That kind of message isn't something MYSTI can help with.",
             }),
             { status: 400, headers: { "Content-Type": "application/json" } },
           );
@@ -159,11 +159,11 @@ export const Route = createFileRoute("/api/chat")({
         const cleanHistory = messages.slice(-6).filter((m) => {
           if (m.role !== "assistant") return true;
           const errorPhrases = [
-            "josh.ai is currently rate limited",
-            "josh.ai has exhausted",
-            "josh.ai is currently unreachable",
+            "MYSTI is currently rate limited",
+            "MYSTI has exhausted",
+            "MYSTI is currently unreachable",
             "Something went wrong",
-            "I'm josh.ai — I'm here to tell you",
+            "I'm MYSTI — I'm here to tell you",
           ];
           return !errorPhrases.some((p) => m.content.includes(p));
         });

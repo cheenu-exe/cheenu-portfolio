@@ -72,40 +72,52 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Joshua S Portfolio" },
+      { title: "Srinivasan G Portfolio"},
       {
         name: "description",
         content:
-          "Joshua S is an AI Engineer and Full Stack Developer specializing in Agentic Architectures and LLM Orchestration.",
+          "Srinivasan G - Computer Science & Business Systems student interested in cybersecurity and AI security.",
       },
-      { name: "author", content: "Joshua S" },
+      { name: "author", content: "Srinivasan G" },
       {
         name: "keywords",
         content:
-          "Joshua S, AI Engineer, Full Stack Developer, Agentic Architectures, LLM Orchestration, React, TypeScript, Python, Portfolio",
+          "Srinivasan G, Computer Science, Cybersecurity, AI Security, CTFs, Open Source",
       },
-      { property: "og:title", content: "Joshua S Portfolio" },
+      { property: "og:title", content: "Srinivasan G Portfolio" },
       {
         property: "og:description",
         content:
-          "Explore the interactive OS portfolio of Joshua S, AI Engineer & Full Stack Developer.",
+          "Srinivasan G Portfolio: Cybersecurity, AI Security, CTFs, and Software Development.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://joshuas.me" },
-      { property: "og:site_name", content: "Joshua S Portfolio" },
-      { property: "og:image", content: "https://joshuas.me/images/og-preview.png" },
+      { property: "og:url", content: "https://srinivasan-portfolio.vercel.app" },
+      { property: "og:site_name", content: "Srinivasan G Portfolio" },
+      { property: "og:image", content: "https://srinivasan.dev/images/og-preview.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Joshua S Portfolio" },
+      { name: "twitter:title", content: "Srinivasan G Portfolio" },
       {
         name: "twitter:description",
         content:
-          "Explore the interactive OS portfolio of Joshua S, AI Engineer & Full Stack Developer.",
+          "Srinivasan G Portfolio: Cybersecurity, AI Security, CTFs, and Software Development.",
       },
-      { name: "twitter:image", content: "https://joshuas.me/images/og-preview.png" },
-      { name: "twitter:site", content: "@sjoshua08" },
-      { name: "twitter:creator", content: "@sjoshua08" },
+      { name: "twitter:description",
+        content:
+          "Srinivasan G Portfolio: Cybersecurity, AI Security, CTFs, and Software Development.",
+      },
+      { name: "twitter:description",
+        content:
+          "Srinivasan G Portfolio: Cybersecurity, AI Security, CTFs, and Software Development.",
+      },
+      { name: "twitter:description",
+        content:
+          "Srinivasan G Portfolio: Cybersecurity, AI Security, CTFs, and Software Development.",
+      },
+      { name: "twitter:image", content: "https://srinivasan.dev/images/og-preview.png" },
+      { name: "twitter:site", content: "@srinivasang" },
+      { name: "twitter:creator", content: "@srinivasan08" }
     ],
     links: [
       { rel: "stylesheet", href: appCss },

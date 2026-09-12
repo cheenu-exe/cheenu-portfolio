@@ -5,7 +5,7 @@ import { PdfWindow } from "../PdfWindow";
 import { ProfileAvatar } from "../ProfileAvatar";
 
 const COMMAND = "whoami";
-const INTERESTS = ["Agentic Architectures", "LLM Orchestration", "AI Products"];
+const INTERESTS = ["Cybersecurity", "AI Security", "CTFs"];
 
 export function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
   const [typed, setTyped] = useState("");
@@ -33,7 +33,7 @@ export function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
     <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-16 pt-4 lg:pt-10">
       <div className="flex-1 w-full">
         <div className="font-mono text-sm sm:text-base text-muted-foreground">
-          <span className="text-primary font-bold">~/josh</span> ${" "}
+          <span className="text-primary font-bold">~/cheenu</span> ${" "}
           <span className="text-foreground">{typed}</span>
           <span className="caret" />
         </div>
@@ -44,7 +44,7 @@ export function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
           transition={{ delay: 0.9 }}
           className="mt-6 text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-foreground"
         >
-          Joshua S
+          Srinivasan G
         </motion.h1>
 
         <motion.div
@@ -53,7 +53,7 @@ export function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
           transition={{ delay: 1.1 }}
           className="mt-4 font-mono text-sm sm:text-base text-primary font-semibold tracking-wide"
         >
-          // AI Systems · Full Stack · Ships Real Products
+          // Cybersecurity · AI Security · Full Stack
         </motion.div>
 
         <motion.p

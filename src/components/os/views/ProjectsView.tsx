@@ -27,7 +27,7 @@ export function ProjectsView() {
   return (
     <div className="pb-12 h-full flex flex-col w-full">
       <div className="mb-6 font-mono text-sm text-muted-foreground">
-        <span className="text-primary">~/josh</span> ${" "}
+        <span className="text-primary">~/cheenu</span> ${" "}
         <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>

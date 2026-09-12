@@ -13,64 +13,124 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "agentic-company-intel",
-    name: "Agentic Company Intelligence System",
-    accent: "#7c6fcd",
+    id: "forge-ide",
+    name: "FORGE IDE",
+    accent: "#10b981",
     short:
-      "Agentic AI that crawls company websites and B2B datasets, extracting and structuring company/people data at scale.",
+      "A full-stack online coding workspace designed for a focused competitive programming experience, with a modern code editor and support for compiling and executing programs.",
     description:
-      "An agentic intelligence pipeline that autonomously discovers, crawls, and structures company and people data from open web sources and B2B datasets. Built end-to-end with offline LLM orchestration, multi-step planning, and automated QA. 1st place winner at InFynd AIM 2025.",
-    tags: ["LangChain", "Llama 3", "LangGraph", "Python", "Web Scraping"],
+      "The platform uses a Next.js frontend with Monaco Editor and a FastAPI backend for code execution. It supports local and Docker-based execution with runtime detection and configurable execution limits.",
+    tags: ["Next.js", "React", "TypeScript", "Monaco Editor", "Tailwind CSS", "FastAPI", "Python", "Docker", "PostgreSQL"],
     architecture: [
-      "LangGraph planner → researcher → extractor → QA agents",
-      "Llama 3 served locally via Ollama (offline capable)",
-      "Async scraping layer with anti-bot strategies",
-      "Structured output via Pydantic schemas + auto QA reports",
+      "Next.js frontend with Monaco Editor",
+      "FastAPI backend for code execution",
+      "Docker-based runtime execution with limits",
+      "Runtime detection and sandboxing",
     ],
     results: [
-      " 1st place — InFynd AIM 2025 hackathon",
-      "Scaled extraction across 1000s of company pages",
+      "Full-stack coding workspace ready for competitive programming",
     ],
-    github: "https://github.com/joshhuu/B2B-Agent",
-  },
-
-  {
-    id: "rural-ai",
-    name: "Rural AI Assistant",
-    accent: "#d97706",
-    short:
-      "Offline-first AI assistant for low-connectivity rural environments — voice stock tracking, sales logging, intent extraction.",
-    description:
-      "An offline-first assistant designed for rural shopkeepers and field workers. Voice-driven stock tracking and sales logging that runs entirely on-device, no internet required.",
-    tags: ["Python", "Offline LLM", "Voice Interfaces", "Local Storage"],
-    architecture: [
-      "On-device speech-to-text",
-      "Local LLM for intent extraction",
-      "SQLite-based stock + sales ledger",
-      "Sync layer for opportunistic online uploads",
-    ],
-    results: ["Shortlisted for Yukti Innovation Challenge (up to 2nd round)"],
-    github: "https://github.com/joshhuu/rural-ai-app",
+    github: "https://github.com/cheenu-exe/forge-ide",
   },
   {
-    id: "satellite-air",
-    name: "Satellite Air Quality Downscaling",
-    accent: "#2563eb",
+    id: "sentinel",
+    name: "SENTINEL",
+    accent: "#f97316",
     short:
-      "ML models that convert low-resolution satellite pollution data into high-resolution air quality maps.",
+      "A personal cybersecurity playground for experimenting with vulnerable applications, networking, reconnaissance, and security monitoring.",
     description:
-      "A two-stage ML pipeline (Random Forest + CNN) that downscales coarse satellite pollution measurements into high-resolution air quality maps, validated against ground stations.",
-    tags: ["Python", "Random Forest", "CNN", "Satellite Data"],
+      "The environment uses vulnerable applications and isolated systems to practice real-world security workflows.",
+    focus: "Web Security · Networking · Reconnaissance · Security Monitoring",
+    tags: ["Web Security", "Networking", "Reconnaissance", "Security Monitoring"],
     architecture: [
-      "Preprocessing of .nc satellite datasets",
-      "Random Forest baseline + CNN spatial model",
-      "Validation against ground-station ground truth",
+      "Vulnerable applications for testing",
+      "Isolated networking environments",
+      "Security monitoring tools integration",
     ],
     results: [
-      "SIH 2024 Finalist (Smart India Hackathon)",
-      ">90% validation accuracy on held-out regions",
+      "Security practice environment established",
     ],
-    github: "https://github.com/joshhuu/airquality-downscaling",
+    github: "https://github.com/cheenu-exe/sentinel",
+  },
+  {
+    id: "ecdats",
+    name: "ECDAT",
+    accent: "#3b82f6",
+    short:
+      "A cybersecurity platform focused on assessing and managing cryptographic readiness, with dashboards and tools for inventory, remediation, migration planning, attack simulation, and post-quantum cryptography recommendations.",
+    description:
+      "The platform includes an interactive command center, asset inventory, remediation workflows, migration simulation, readiness assessment, PQC recommendations, and an AI-assisted interface.",
+    focus: "Cybersecurity · Cryptographic Readiness · Post-Quantum Security · Risk & Remediation",
+    tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Node.js", "Express", "tRPC", "MySQL", "Drizzle ORM", "Post-Quantum Cryptography"],
+    architecture: [
+      "Interactive command center dashboard",
+      "Asset inventory management",
+      "Remediation workflow engine",
+      "Migration simulation and PQC recommendations",
+      "AI-assisted security interface",
+    ],
+    results: [
+      "Cryptographic readiness assessment platform deployed",
+    ],
+    github: "https://github.com/cheenu-exe/ecdats",
+  },
+  {
+    id: "ai-bias-detector",
+    name: "AI BIAS DETECTOR",
+    accent: "#8b5cf6",
+    short:
+      "A project focused on analyzing AI outputs and identifying potential bias patterns in AI-generated results.",
+    description:
+      "Analyzes AI-generated results for bias patterns and provides insights into potential issues.",
+    tags: ["Python", "AI"],
+    architecture: [
+      "AI output analysis pipeline",
+      "Bias detection algorithms",
+      "Pattern recognition and reporting",
+    ],
+    results: [
+      "Bias analysis tool for AI outputs",
+    ],
+    github: "https://github.com/cheenu-exe/ai-bias-detector",
+  },
+  {
+    id: "vulnerability-scanner-dashboard",
+    name: "VULNERABILITY SCANNER DASHBOARD",
+    accent: "#ec4899",
+    short:
+      "A web-based security dashboard for experimenting with automated reconnaissance and vulnerability scanning.",
+    description:
+      "Web-based dashboard for automated reconnaissance and vulnerability scanning using Nmap and other tools.",
+    tags: ["Flask", "Python", "SQLite", "Nmap"],
+    architecture: [
+      "Flask web application",
+      "Nmap integration for scanning",
+      "SQLite database for results storage",
+      "Automated reconnaissance workflows",
+    ],
+    results: [
+      "Vulnerability scanning dashboard deployed",
+    ],
+    github: "https://github.com/cheenu-exe/vulnerability-scanner-dashboard",
+  },
+  {
+    id: "mysti-ai",
+    name: "MYSTI AI",
+    accent: "#06b6d4",
+    short:
+      "A personal AI assistant project exploring the use of AI APIs within a custom application.",
+    description:
+      "Exploring the use of AI APIs within a custom application for personal assistance.",
+    tags: ["Python", "Google Gemini API"],
+    architecture: [
+      "Python-based AI assistant",
+      "Google Gemini API integration",
+      "Custom application wrapper",
+    ],
+    results: [
+      "Personal AI assistant with API integration",
+    ],
+    github: "https://github.com/cheenu-exe/mysti-ai",
   },
 ];
 
@@ -85,7 +145,7 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     id: "infynd",
-    range: "2026-03 → Present",
+    range: "2024-06 → Present",
     org: "Infynd",
     role: "AI Engineering Intern",
     bullets: [
@@ -114,6 +174,16 @@ export const experience: Experience[] = [
       "Implemented website summarization workflows using LangChain.",
     ],
   },
+  {
+    id: "ctf-practice",
+    range: "2025-01 → Present",
+    org: "Personal CTF Practice",
+    role: "Security Researcher",
+    bullets: [
+      "Practicing Web Exploitation, Cryptography, and Forensics challenges.",
+      "Participating in online CTFs and security competitions.",
+    ],
+  },
 ];
 
 export type Education = {
@@ -129,8 +199,8 @@ export const education: Education[] = [
     id: "kahe",
     range: "2023 → 2027",
     institution: "Karpagam Academy of Higher Education",
-    degree: "B.Tech AI & Data Science (ongoing)",
-    bullets: ["Coursework spanning AI, Data Science and Software Engineering."],
+    degree: "B.Tech Computer Science & Business Systems",
+    bullets: ["Coursework spanning Computer Science, Business Systems, and Software Engineering."],
   },
 ];
 
@@ -144,63 +214,85 @@ export type Mission = {
 
 export const missions: Mission[] = [
   {
-    id: "infynd-aim",
-    title: "1st Place — InFynd AIM",
-    subtitle: "Agentic AI & B2B Data Intelligence",
-    year: "2025",
-    status: "ACCOMPLISHED",
+    id: "ctf-training",
+    title: "CTF TRAINING",
+    subtitle: "Practicing Capture The Flag challenges and developing practical cybersecurity skills.",
+    year: "2026",
+    status: "ONGOING",
   },
   {
-    id: "sih",
-    title: "SIH Finalist",
-    subtitle: "Smart India Hackathon · ISRO Problem Statement",
-    year: "2024",
-    status: "COMPLETED",
+    id: "cyber-playground",
+    title: "CYBER PLAYGROUND",
+    subtitle: "Building isolated vulnerable environments to practice security testing and understand attack workflows.",
+    year: "2026",
+    status: "ONGOING",
   },
   {
-    id: "rakathon",
-    title: "Top 100 / 8,000+ Teams",
-    subtitle: "Rakathon 2024 · Rakuten India",
-    year: "2024",
-    status: "ACHIEVED",
+    id: "ai-security",
+    title: "AI SECURITY",
+    subtitle: "Exploring security problems related to AI-powered applications and learning how AI systems can be tested and secured.",
+    year: "2026",
+    status: "ONGOING",
   },
   {
-    id: "gfg-ambassador",
-    title: "Campus Ambassador",
-    subtitle: "GeeksforGeeks",
-    year: "2025",
-    status: "COMPLETED",
+    id: "building",
+    title: "BUILDING",
+    subtitle: "Turning what I learn into projects, experiments, tools, and practical security environments.",
+    year: "2026",
+    status: "ONGOING",
   },
 ];
 
 export const stackGroups: { label: string; items: string[] }[] = [
   {
-    label: "AI / ML",
+    label: "AI Security",
     items: [
-      "LangChain",
-      "LangGraph",
-      "CrewAI",
-      "HuggingFace",
-      "Ollama",
-      "ChromaDB",
-      "Pinecone",
-      "Scikit-learn",
-      "TensorFlow",
-      "Keras",
+      "Prompt Injection",
+      "Adversarial AI",
+      "Model Privacy",
+      "AI Red Teaming",
+      "LLM Security",
     ],
   },
-  { label: "Languages", items: ["Python", "JavaScript", "Java", "SQL"] },
-  { label: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  { label: "Backend", items: ["FastAPI", "Node.js", "REST APIs"] },
-  { label: "Data", items: ["NumPy", "Pandas", "Web Scraping", "Pydantic v2"] },
-  { label: "Infrastructure", items: ["Docker", "Git", "GitHub", "MySQL"] },
-  { label: "Cloud / Certs", items: ["Microsoft Azure AI", "IBM Data Science Professional"] },
+  {
+    label: "Cybersecurity",
+    items: [
+      "Network Security",
+      "Web Application Security",
+      "Reverse Engineering",
+      "Cryptography",
+      "Forensics",
+    ],
+  },
+  {
+    label: "Languages",
+    items: ["Python", "C++", "Java", "SQL", "Bash"],
+  },
+  {
+    label: "Security Tools",
+    items: ["Linux", "Nmap", "Wireshark", "Gobuster", "FFUF", "WhatWeb"],
+  },
+  {
+    label: "Infrastructure & Tools",
+    items: ["Docker", "Git", "GitHub", "Vercel", "Render"],
+  },
+  {
+    label: "Currently Learning",
+    items: [
+      "AI Security",
+      "Web Application Security",
+      "CTF",
+      "Offensive Security",
+      "DevSecOps",
+      "Secure Software Engineering",
+    ],
+  },
 ];
 
 export const contact = {
-  email: "joshuasuresh08@gmail.com",
-  github: "https://github.com/joshhuu",
-  githubHandle: "joshhuu",
-  portfolio: "joshuatech.vercel.app",
-  linkedin: "https://www.linkedin.com/in/joshua08/",
+  email: "cheenu.exe@gmail.com",
+  github: "https://github.com/cheenu-exe/",
+  githubHandle: "cheenu-exe",
+  portfolio: "srinivasan-portfolio.vercel.app",
+  linkedin: "https://www.linkedin.com/in/srini-vasan-15124238b/",
 };

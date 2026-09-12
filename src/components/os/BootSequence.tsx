@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const LINES = [
-  "Booting josh.os...",
+  "Booting cheenu.os...",
   "Initializing agentic systems...",
   "Loading models: Gemma4, Llama 3...",
   "Mounting projects...",

@@ -20,7 +20,7 @@ export function AboutView() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 w-full">
       <div className="mb-10 font-mono text-sm sm:text-base text-muted-foreground">
-        <span className="text-primary font-bold">~/josh</span> ${" "}
+        <span className="text-primary font-bold">~/cheenu</span> ${" "}
         <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>
@@ -32,16 +32,14 @@ export function AboutView() {
               About Me
             </h2>
             <p className="mt-5 text-lg sm:text-xl text-foreground/90 leading-relaxed font-normal">
-              I'm <span className="text-foreground font-bold">Joshua</span> — an AI engineer from
-              Coimbatore, India. I build production-grade agentic systems, full-stack AI products,
-              and software that actually ships. I focus on real-world impact over raw demos.
+              I'm <span className="text-foreground font-bold">Srinivasan G</span> — a Computer Science & Business Systems student interested in cybersecurity and AI security. I learn primarily by building projects, working with security tools, experimenting with vulnerable environments, and solving CTF challenges.
             </p>
 
             <div className="mt-8 space-y-4 font-mono text-sm sm:text-base">
-              <Row label="currently" value="B.Tech AI & Data Science @ KAHE (2023–2027)" />
+              <Row label="currently" value="B.Tech Computer Science & Business Systems @ KAHE (2023–2027)" />
               <Row
                 label="interests"
-                value="Agentic architectures · LLM orchestration · AI products · Hackathons"
+                value="Cybersecurity · AI Security · Web Application Security · CTFs · DevSecOps · Secure Software Engineering"
               />
             </div>
           </div>
@@ -61,7 +59,7 @@ export function AboutView() {
               rel="noreferrer"
               className="inline-flex items-center gap-2.5 rounded-xl border border-border bg-panel px-4 py-2.5 font-mono text-xs sm:text-sm font-bold hover:bg-panel-2 hover:border-primary/50 transition-all"
             >
-              <Globe className="h-4 w-4 text-primary" /> {contact.portfolio}
+              <Globe className="h-4 w-4 text-primary" /> Portfolio
             </a>
             <a
               href={`mailto:${contact.email}`}
@@ -79,7 +77,7 @@ export function AboutView() {
             <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
             <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
             <span className="ml-3 text-muted-foreground text-xs font-semibold">
-              ~/josh/projects
+              ~/projects
             </span>
           </div>
           <div className="p-6 flex-1 space-y-3 text-muted-foreground overflow-x-auto">

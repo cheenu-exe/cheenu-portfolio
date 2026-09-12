@@ -11,12 +11,12 @@ import { ExperienceView } from "./views/ExperienceView";
 import { MissionsView } from "./views/MissionsView";
 import { StackView } from "./views/StackView";
 import { ContactView } from "./views/ContactView";
-import { JoshAiWidget } from "./chat/JoshAiWidget";
+import { CheenuAiWidget } from "./chat/CheenuAiWidget";
 import { PdfWindow } from "./PdfWindow";
 import { MatrixRain } from "./MatrixRain";
 import { soundEngine } from "@/lib/soundEngine";
 
-const BOOT_KEY = "josh-os-booted";
+const BOOT_KEY = "cheenu-os-booted";
 
 export function OsShell() {
   const [view, setView] = useState<View>("home");
@@ -152,8 +152,8 @@ export function OsShell() {
         </main>
       </div>
       <MobileTabBar active={view} onChange={setView} />
-      <JoshAiWidget onNavigate={setView} onOpenPdf={() => setPdfOpen(true)} />
-      <PdfWindow isOpen={pdfOpen} onClose={() => setPdfOpen(false)} pdfUrl="/Joshua-Resume.pdf" />
+      <CheenuAiWidget onNavigate={setView} onOpenPdf={() => setPdfOpen(true)} />
+      <PdfWindow isOpen={pdfOpen} onClose={() => setPdfOpen(false)} pdfUrl="/Srinivasan-Resume-2026.pdf" />
       <Toaster theme="dark" />
     </div>
   );

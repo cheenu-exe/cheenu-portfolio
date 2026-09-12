@@ -70,7 +70,7 @@ export function ExperienceView() {
   return (
     <div className="pb-12 w-full">
       <div className="mb-8 font-mono text-sm text-muted-foreground">
-        <span className="text-primary">~/josh</span> ${" "}
+        <span className="text-primary">~/cheenu</span> ${" "}
         <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>

@@ -31,8 +31,8 @@ export function ProfileAvatar({ className }: ProfileAvatarProps) {
         >
           <div className="relative h-full w-full animate-morph overflow-hidden border-2 border-white/15 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.6)] backdrop-blur-xl">
             <img
-              src="/images/me.jpg"
-              alt="Photo of Joshua S"
+              src="/images/srinivasan.jpg"
+              alt="Photo of Srinivasan G"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
@@ -50,7 +50,7 @@ export function ProfileAvatar({ className }: ProfileAvatarProps) {
           <div className="relative h-full w-full animate-morph overflow-hidden border-2 border-primary/40 bg-panel-2 shadow-[0_0_40px_rgba(124,111,205,0.4)] backdrop-blur-xl">
             <img
               src="/images/avatar.png"
-              alt="Animated avatar of Joshua S waving"
+              alt="Animated avatar of Srinivasan G waving"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>

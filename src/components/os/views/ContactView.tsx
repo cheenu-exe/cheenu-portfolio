@@ -3,7 +3,7 @@ import { Copy, Check, Linkedin } from "lucide-react";
 import { toast } from "sonner";
 import { contact } from "@/data/portfolio";
 
-const COMMAND = "ssh joshuas.me -p 22";
+const COMMAND = "ssh cheenu.me -p 22";
 
 export function ContactView() {
   const [copied, setCopied] = useState(false);
@@ -50,7 +50,7 @@ export function ContactView() {
       }
 
       setForm({ name: "", email: "", message: "" });
-      toast.success("message sent — josh will reply soon");
+      toast.success("message sent — cheenu will reply soon");
     } catch (err) {
       toast.error("network error — please try again");
     } finally {
@@ -61,7 +61,7 @@ export function ContactView() {
   return (
     <div className="pb-12 w-full">
       <div className="mb-10 font-mono text-sm text-muted-foreground">
-        <span className="text-primary font-bold">~/josh</span> ${" "}
+        <span className="text-primary font-bold">~/cheenu</span> ${" "}
         <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>
@@ -159,7 +159,7 @@ export function ContactView() {
               </a>
 
               <a
-                href="https://instagram.com/sjoshua08"
+                href="https://instagram.com/scheenu08"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 px-5 py-3 rounded-xl bg-panel hover:bg-panel-2 border border-border hover:border-primary/50 transition-all font-mono text-xs sm:text-sm font-bold text-foreground group"

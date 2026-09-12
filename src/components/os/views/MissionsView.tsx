@@ -75,7 +75,7 @@ export function MissionsView() {
   return (
     <div className="pb-12 w-full">
       <div className="mb-10 font-mono text-sm text-muted-foreground">
-        <span className="text-primary font-bold">~/josh</span> ${" "}
+        <span className="text-primary font-bold">~/cheenu</span> ${" "}
         <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>

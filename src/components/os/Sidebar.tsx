@@ -159,7 +159,7 @@ export function Sidebar({
 
             <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[10px] text-white/50">
               <span>
-                Kernel: <strong className="text-white/80 font-normal">v2.4-josh</strong>
+                Kernel: <strong className="text-white/80 font-normal">v2.4-cheenu</strong>
               </span>
               <span>
                 Latency: <strong className="text-emerald-400 font-normal">14ms</strong>
@@ -185,7 +185,7 @@ export function Sidebar({
           </div>
           <div className="font-mono text-[10px] text-cyan-200/70 flex items-center justify-between">
             <span>
-              Engine: <strong className="text-white font-medium">josh.ai v2.4</strong>
+              Engine: <strong className="text-white font-medium">cheenu.ai v2.4</strong>
             </span>
             <span>
               State: <strong className="text-cyan-300 font-semibold">Ready</strong>

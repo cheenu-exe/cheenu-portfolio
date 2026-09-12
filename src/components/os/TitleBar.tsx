@@ -61,7 +61,7 @@ export function TitleBar({
         </button>
       </div>
       <div className="absolute left-1/2 -translate-x-1/2 text-foreground/80 whitespace-nowrap overflow-hidden max-w-[40vw] sm:max-w-none text-ellipsis text-center">
-        josh.ai <span className="hidden sm:inline">— portfolio</span>
+        Srinivasan Portfolio <span className="hidden sm:inline">— OS Interface</span>
       </div>
       <div className="flex items-center">
         <span>{time}</span>

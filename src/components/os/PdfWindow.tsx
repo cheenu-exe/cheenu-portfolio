@@ -14,7 +14,7 @@ export function PdfWindow({
   isOpen,
   onClose,
   pdfUrl,
-  title = "Joshua-Resume-2026.pdf",
+  title = "Srinivasan-Resume-2026.pdf",
 }: PdfWindowProps) {
   const [isMaximized, setIsMaximized] = useState(false);
   const [exitAction, setExitAction] = useState<"close" | "minimize">("close");

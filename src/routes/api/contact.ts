@@ -82,7 +82,7 @@ export const Route = createFileRoute("/api/contact")({
 
           const { data, error } = await resend.emails.send({
             from: "Portfolio Contact Form <onboarding@resend.dev>",
-            to: "joshulive@gmail.com",
+            to: "cheenuLive@gmail.com",
             subject: `New Portfolio Message from ${name}`,
             replyTo: email,
             text: `You received a new message from your portfolio contact form!\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
