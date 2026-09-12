@@ -13,8 +13,8 @@ export default defineConfig({
       VitePWA({
         registerType: "autoUpdate",
         manifest: {
-          name: "Joshua S Portfolio",
-          short_name: "josh.ai",
+          name: "Cheenu S Portfolio",
+          short_name: "cheenu-exe",
           theme_color: "#000000",
           background_color: "#000000",
           display: "standalone",

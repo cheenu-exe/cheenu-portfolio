@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { JOSH_SYSTEM_PROMPT } from "@/lib/cheenu-system-prompt.server";
+import { CHEENU_SYSTEM_PROMPT } from "@/lib/cheenu-system-prompt.server";
 
 type Msg = { role: "user" | "assistant"; content: string };
 type ChatBody = { messages?: Msg[] };
@@ -181,7 +181,7 @@ export const Route = createFileRoute("/api/chat")({
               stream: true,
               max_tokens: 250,
               messages: [
-                { role: "system", content: JOSH_SYSTEM_PROMPT },
+                { role: "system", content: CHEENU_SYSTEM_PROMPT },
                 ...cleanHistory.map((m) => ({
                   role: m.role,
                   content: m.content.slice(0, 2000),
