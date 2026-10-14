@@ -7,8 +7,6 @@ const COMMAND = "ssh cheenu.me -p 22";
 
 export function ContactView() {
   const [copied, setCopied] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sending, setSending] = useState(false);
   const [typed, setTyped] = useState("");
 
   useEffect(() => {
@@ -26,41 +24,6 @@ export function ContactView() {
     setCopied(true);
     toast.success("email copied to clipboard");
     setTimeout(() => setCopied(false), 1500);
-  };
-
-  const send = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      toast.error("fill all fields");
-      return;
-    }
-    setSending(true);
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim(),
-          message: form.message.trim(),
-        }),
-      });
-
-      if (!res.ok) {
-        const errorText = await res.text();
-        toast.error(errorText || "Message could not be sent. Please try again later.");
-        return;
-      }
-
-      setForm({ name: "", email: "", message: "" });
-      toast.success("message sent — cheenu will reply soon");
-    } catch (err) {
-      console.error("[contact] Network request failed:", err);
-      toast.error("Could not reach the contact service. Please try again later.");
-    } finally {
-      setSending(false);
-    }
   };
 
   return (
@@ -180,89 +143,45 @@ export function ContactView() {
           </div>
         </div>
 
-        {/* RIGHT SIDE: Form Modal */}
-        <div className="w-full lg:w-[480px] xl:w-[540px] shrink-0 bg-panel/90 backdrop-blur-xl border border-border shadow-2xl shadow-black/40 rounded-2xl p-7 sm:p-9 flex flex-col justify-between">
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-1.5">
-              Send a Message
-            </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground mb-6 font-mono">
-              Direct transmission to inbox
-            </p>
-
-            <form onSubmit={send} className="space-y-4 sm:space-y-5">
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="contact-name"
-                  className="text-xs font-semibold text-muted-foreground ml-1 font-mono uppercase tracking-wider"
-                >
-                  Name
-                </label>
-                <input
-                  id="contact-name"
-                  required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="John Doe"
-                  maxLength={100}
-                  className="w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/40 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 focus:outline-none transition-all"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="contact-email"
-                  className="text-xs font-semibold text-muted-foreground ml-1 font-mono uppercase tracking-wider"
-                >
-                  Email
-                </label>
-                <input
-                  id="contact-email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="john@example.com"
-                  type="email"
-                  maxLength={320}
-                  className="w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/40 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 focus:outline-none transition-all"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="contact-message"
-                  className="text-xs font-semibold text-muted-foreground ml-1 font-mono uppercase tracking-wider"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="How can I help you?"
-                  rows={4}
-                  maxLength={5000}
-                  className="w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/40 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 focus:outline-none resize-none transition-all"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={sending}
-                className="w-full mt-3 flex items-center justify-center gap-2.5 rounded-xl bg-primary text-primary-foreground px-6 py-4 text-base font-bold transition-all hover:bg-primary/90 disabled:opacity-70 shadow-lg shadow-primary/25 cursor-pointer active:scale-95"
-              >
-                {sending ? (
-                  <>
-                    <span className="h-5 w-5 rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  "Send Message"
-                )}
-              </button>
-            </form>
+        {/* RIGHT SIDE: Simple Email Contact Card */}
+        <div className="w-full lg:w-[480px] xl:w-[540px] shrink-0 bg-panel/90 backdrop-blur-xl border border-border shadow-2xl shadow-black/40 rounded-2xl p-7 sm:p-9 flex flex-col justify-center">
+          <div className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-5 font-bold">
+            // DIRECT CONTACT
           </div>
+          <div className="flex items-center justify-center h-16 w-16 rounded-2xl border border-border bg-panel-2 mb-6">
+            <img
+              src="https://cdn.simpleicons.org/gmail/EA4335"
+              alt="Gmail"
+              className="h-8 w-8"
+            />
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+            Keep it simple.
+          </h3>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-7">
+            Have an opportunity, project idea, or question? Copy my email address and reach out whenever you're ready.
+          </p>
+          <div className="rounded-xl border border-border bg-background/70 p-4 mb-4">
+            <div className="font-mono text-xs text-muted-foreground mb-2">EMAIL ADDRESS</div>
+            <div className="font-mono text-sm sm:text-base text-foreground font-semibold break-all">
+              {contact.email}
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={copyEmail}
+            className="w-full flex items-center justify-center gap-2.5 rounded-xl bg-primary text-primary-foreground px-6 py-4 text-base font-bold transition-all hover:bg-primary/90 shadow-lg shadow-primary/25 cursor-pointer active:scale-95"
+          >
+            {copied ? (
+              <Check className="h-5 w-5" />
+            ) : (
+              <Copy className="h-5 w-5" />
+            )}
+            {copied ? "Email Copied" : "Copy Email Address"}
+          </button>
+          <p className="mt-4 text-center text-xs text-muted-foreground font-mono">
+            No forms. No waiting. Just reach out.
+          </p>
         </div>
       </div>
     </div>
