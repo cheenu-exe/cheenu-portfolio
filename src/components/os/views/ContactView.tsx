@@ -1,19 +1,34 @@
 import { useState, useEffect } from "react";
-import { Copy, Check, Linkedin, Mail, Terminal, FileText } from "lucide-react";
+import { Copy, Check, Linkedin } from "lucide-react";
 import { toast } from "sonner";
-import { contact } from "@/data/portfolio";
+import { contact, projects, experience, education, stackGroups } from "@/data/portfolio";
 
 const COMMAND = "ssh cheenu.me -p 22";
 
 export function ContactView() {
   const [copied, setCopied] = useState(false);
-  const [name, setName] = useState("");
-  const [senderEmail, setSenderEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageCopied, setMessageCopied] = useState(false);
-  const [generatedMessage, setGeneratedMessage] = useState("");
-
   const [typed, setTyped] = useState("");
+  const [command, setCommand] = useState("");
+  const [terminalLines, setTerminalLines] = useState<string[]>([
+    "Welcome to the terminal. Type \"help\" to see available commands.",
+    "",
+    "© 2026 Cheenu Terminal. All rights reserved.",
+    "",
+    "$ help",
+    "Available commands:",
+    "- help: Show this help message",
+    "- about: About me",
+    "- skills: My technical skills",
+    "- projects: List of my projects",
+    "- contact: Contact information",
+    "- experience: My work experience",
+    "- education: My educational background",
+    "- languages: Languages I speak",
+    "- copy-email: Copy my email address",
+    "- clear: Clear the terminal",
+    "- reload: Reload the terminal",
+    "",
+  ]);
 
   useEffect(() => {
     let i = 0;
@@ -32,42 +47,84 @@ export function ContactView() {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const generateMessage = () => {
-    if (!name.trim() || !senderEmail.trim() || !message.trim()) {
-      toast.error("Enter your name, email, and message first.");
-      return;
-    }
-    setGeneratedMessage(
-      `To: ${contact.email}\nSubject: Portfolio message from ${name.trim()}\n\nName: ${name.trim()}\nEmail: ${senderEmail.trim()}\n\nMessage:\n${message.trim()}`,
-    );
-    setMessageCopied(false);
-    toast.success("Message generated.");
-  };
-
-  const copyPreparedMessage = async () => {
-    if (!generatedMessage) {
-      toast.error("Generate your message first.");
-      return;
-    }
+  const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(generatedMessage);
-      setMessageCopied(true);
-      toast.success("Message copied to clipboard.");
-      setTimeout(() => setMessageCopied(false), 1800);
+      await navigator.clipboard.writeText(contact.email);
+      setCopied(true);
+      toast.success("email copied to clipboard");
+      setTimeout(() => setCopied(false), 1500);
     } catch {
-      toast.error("Clipboard access failed. Check your browser permissions.");
+      toast.error("Clipboard access failed. Check browser permissions.");
     }
   };
 
-  const openGmail = () => {
-    if (!generatedMessage) {
-      toast.error("Generate your message first.");
+  const runCommand = (rawCommand: string) => {
+    const value = rawCommand.trim().toLowerCase();
+    if (!value) return;
+    if (value === "clear") {
+      setTerminalLines([]);
+      setCommand("");
       return;
     }
-    const subject = `Portfolio message from ${name.trim()}`;
-    const body = `Name: ${name.trim()}\nEmail: ${senderEmail.trim()}\n\nMessage:\n${message.trim()}`;
-    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    if (value === "reload") {
+      setTerminalLines([
+        "Welcome to the terminal. Type \"help\" to see available commands.",
+        "",
+        "© 2026 Cheenu Terminal. All rights reserved.",
+        "",
+      ]);
+      setCommand("");
+      return;
+    }
+
+    let output: string[];
+    switch (value) {
+      case "help":
+        output = [
+          "Available commands:",
+          "- help: Show this help message",
+          "- about: About me",
+          "- skills: My technical skills",
+          "- projects: List of my projects",
+          "- contact: Contact information",
+          "- experience: My work experience",
+          "- education: My educational background",
+          "- languages: Languages I speak",
+          "- copy-email: Copy my email address",
+          "- clear: Clear the terminal",
+          "- reload: Reload the terminal",
+        ];
+        break;
+      case "about":
+        output = ["I'm Cheenu, a Computer Science & Business Systems student building software and exploring cybersecurity and AI security."];
+        break;
+      case "skills":
+        output = stackGroups.flatMap((group) => [group.label + ":", ...group.items.map((item) => "  - " + item)]);
+        break;
+      case "projects":
+        output = projects.map((project) => "- " + project.name + ": " + project.short);
+        break;
+      case "contact":
+        output = ["Email: " + contact.email, "GitHub: " + contact.github, "LinkedIn: " + contact.linkedin, "Instagram: instagram.com/mystivox.lol"];
+        break;
+      case "experience":
+        output = experience.flatMap((item) => [item.org + " — " + item.role, ...item.bullets.map((bullet) => "  - " + bullet), ""]);
+        break;
+      case "education":
+        output = education.flatMap((item) => [item.institution, item.degree, ...item.bullets.map((bullet) => "  - " + bullet), ""]);
+        break;
+      case "languages":
+        output = ["English", "Tamil"];
+        break;
+      case "copy-email":
+        void copyEmail();
+        output = ["Copying " + contact.email + " to clipboard..."];
+        break;
+      default:
+        output = ["Command not found: " + value, 'Type "help" to see available commands.'];
+    }
+    setTerminalLines((lines) => [...lines, "$ " + rawCommand, ...output, ""]);
+    setCommand("");
   };
 
   return (
@@ -187,60 +244,41 @@ export function ContactView() {
           </div>
         </div>
 
-        {/* RIGHT SIDE: Terminal Contact Console */}
-        <div className="w-full lg:w-[480px] xl:w-[540px] shrink-0 overflow-hidden rounded-2xl border border-border bg-[#0b0d10] shadow-2xl shadow-black/40">
-          <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-5 py-4">
-            <span className="h-3 w-3 rounded-full bg-red-400" />
-            <span className="h-3 w-3 rounded-full bg-yellow-400" />
-            <span className="h-3 w-3 rounded-full bg-emerald-400" />
-            <span className="ml-3 font-mono text-xs text-white/50">cheenu@portfolio: ~/contact</span>
+        {/* RIGHT SIDE: Retro Terminal Contact Area */}
+        <div className="w-full lg:w-[480px] xl:w-[540px] shrink-0 overflow-hidden rounded-xl border border-[#123d12] bg-black shadow-[0_0_28px_rgba(0,255,0,0.12)]">
+          <div className="flex items-center justify-between border-b border-[#1b8f1b] px-5 py-3">
+            <span className="font-mono text-base font-bold tracking-wide text-[#39ff14]">CHEENU Terminal</span>
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#168b12]" />
+              <span className="h-3 w-3 rounded-full bg-[#168b12]" />
+              <span className="h-3 w-3 rounded-full bg-[#168b12]" />
+            </div>
           </div>
-          <div className="p-6 sm:p-8 font-mono">
-            <div className="mb-2 flex items-center gap-2 text-xs text-emerald-400">
-              <Terminal className="h-4 w-4" /> CONTACT_PROTOCOL v1.0
+          <div className="flex max-h-[620px] min-h-[440px] flex-col p-4 sm:p-5 font-mono text-sm sm:text-base text-[#39ff14]">
+            <div className="min-h-0 flex-1 overflow-y-auto whitespace-pre-wrap break-words leading-7 [text-shadow:0_0_8px_rgba(57,255,20,0.2)]">
+              {terminalLines.map((line, index) => (
+                <div key={index} className={line.startsWith("$ ") ? "font-bold" : ""}>{line || "\u00a0"}</div>
+              ))}
             </div>
-            <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">Initialize connection</h3>
-            <p className="mb-6 text-sm leading-relaxed text-white/55">
-              Compose your message here. Generate it, then copy it or open Gmail with the details filled in.
-            </p>
-            <div className="space-y-4">
-              <div className="space-y-1.5">
-                <label htmlFor="terminal-contact-name" className="block text-xs text-white/60">NAME</label>
-                <input id="terminal-contact-name" value={name} onChange={(e) => { setName(e.target.value); setGeneratedMessage(""); }} maxLength={100} placeholder="Your name" className="w-full rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60" />
-              </div>
-              <div className="space-y-1.5">
-                <label htmlFor="terminal-contact-email" className="block text-xs text-white/60">YOUR EMAIL</label>
-                <input id="terminal-contact-email" type="email" value={senderEmail} onChange={(e) => { setSenderEmail(e.target.value); setGeneratedMessage(""); }} maxLength={320} placeholder="you@example.com" className="w-full rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60" />
-              </div>
-              <div className="space-y-1.5">
-                <label htmlFor="terminal-contact-message" className="block text-xs text-white/60">MESSAGE</label>
-                <textarea id="terminal-contact-message" value={message} onChange={(e) => { setMessage(e.target.value); setGeneratedMessage(""); }} maxLength={5000} rows={4} placeholder="Type your message..." className="w-full resize-y rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60" />
-              </div>
-              <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-xs leading-relaxed">
-                <div className="mb-1 text-white/40">$ recipient --show</div>
-                <div className="break-all text-emerald-300">{contact.email}</div>
-                <div className="mt-3 text-white/40">$ status</div>
-                <div className="text-white/70">{generatedMessage ? "Message generated — ready to send" : "Waiting for input"}</div>
-              </div>
-              {generatedMessage && (
-                <div className="max-h-36 overflow-auto whitespace-pre-wrap rounded-lg border border-white/10 bg-black/40 p-3 text-xs leading-relaxed text-white/70">
-                  {generatedMessage}
-                </div>
-              )}
-              <button type="button" onClick={generateMessage} className="flex w-full items-center justify-center gap-2 rounded-lg border border-emerald-400/40 bg-emerald-400/10 px-5 py-3 text-sm font-bold text-emerald-300 transition-all hover:bg-emerald-400/20 active:scale-[0.98]">
-                <FileText className="h-4 w-4" /> Generate Message
-              </button>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                <button type="button" onClick={copyPreparedMessage} disabled={!generatedMessage} className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-bold text-white transition-all hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40">
-                  {messageCopied ? <Check className="h-4 w-4 text-emerald-300" /> : <Copy className="h-4 w-4" />}
-                  {messageCopied ? "Copied" : "Copy Message"}
-                </button>
-                <button type="button" onClick={openGmail} disabled={!generatedMessage} className="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-40">
-                  <Mail className="h-4 w-4" /> Open Gmail
-                </button>
-              </div>
-              <p className="text-center text-[11px] text-white/40">Gmail opens in a new browser tab. You review and send the email yourself.</p>
-            </div>
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                runCommand(command);
+              }}
+              className="mt-2 flex shrink-0 items-center gap-2"
+            >
+              <span className="font-bold">$</span>
+              <input
+                aria-label="Terminal command"
+                value={command}
+                onChange={(event) => setCommand(event.target.value)}
+                autoComplete="off"
+                spellCheck={false}
+                className="min-w-0 flex-1 border-0 bg-transparent text-[#39ff14] outline-none placeholder:text-[#1c8b16] focus:ring-0"
+                placeholder="type a command..."
+              />
+              <button type="submit" className="sr-only">Run command</button>
+            </form>
           </div>
         </div>
       </div>
