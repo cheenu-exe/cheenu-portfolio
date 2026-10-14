@@ -41,13 +41,6 @@ export function ContactView() {
   }, []);
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText(contact.email);
-    setCopied(true);
-    toast.success("email copied to clipboard");
-    setTimeout(() => setCopied(false), 1500);
-  };
-
-  const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(contact.email);
       setCopied(true);
