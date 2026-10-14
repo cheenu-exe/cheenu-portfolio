@@ -28,9 +28,17 @@ export function ContactView() {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  const openEmailFallback = () => {
+    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
+    );
+    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+  };
+
   const send = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast.error("fill all fields");
       return;
     }
@@ -40,19 +48,27 @@ export function ContactView() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+        }),
       });
 
       if (!res.ok) {
         const errorText = await res.text();
-        toast.error(errorText || "failed to send message");
+        console.error("[contact] API request failed:", res.status, errorText);
+        toast.error("Email service unavailable — opening your email app instead.");
+        openEmailFallback();
         return;
       }
 
       setForm({ name: "", email: "", message: "" });
       toast.success("message sent — cheenu will reply soon");
     } catch (err) {
-      toast.error("network error — please try again");
+      console.error("[contact] Network request failed:", err);
+      toast.error("Could not reach the email service — opening your email app instead.");
+      openEmailFallback();
     } finally {
       setSending(false);
     }
