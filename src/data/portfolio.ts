@@ -226,47 +226,24 @@ export const missions: Mission[] = [
 
 export const stackGroups: { label: string; items: string[] }[] = [
   {
-    label: "AI Security",
-    items: [
-      "Prompt Injection",
-      "Adversarial AI",
-      "Model Privacy",
-      "AI Red Teaming",
-      "LLM Security",
-    ],
+    label: "Languages & Web",
+    items: ["Python", "C++", "JavaScript", "SQL", "HTML", "CSS"],
   },
   {
-    label: "Cybersecurity",
-    items: [
-      "Network Security",
-      "Web Application Security",
-      "Reverse Engineering",
-      "Cryptography",
-      "Forensics",
-    ],
+    label: "Frameworks & Databases",
+    items: ["Flask", "FastAPI", "SQLite", "MySQL"],
   },
   {
-    label: "Languages",
-    items: ["Python", "C++", "Java", "SQL", "Bash"],
-  },
-  {
-    label: "Security Tools",
-    items: ["Linux", "Nmap", "Wireshark", "Gobuster", "FFUF", "WhatWeb"],
+    label: "Cybersecurity & Networking",
+    items: ["Linux", "Nmap", "Gobuster", "FFUF", "WhatWeb", "Computer Networks", "Cryptography"],
   },
   {
     label: "Infrastructure & Tools",
-    items: ["Docker", "Git", "GitHub", "Vercel", "Render"],
+    items: ["Docker", "Git", "GitHub", "Nginx", "Vercel", "Render"],
   },
   {
-    label: "Currently Learning",
-    items: [
-      "AI Security",
-      "Web Application Security",
-      "CTF",
-      "Offensive Security",
-      "DevSecOps",
-      "Secure Software Engineering",
-    ],
+    label: "Core Computer Science",
+    items: ["Object-Oriented Programming", "Data Structures & Algorithms", "DBMS", "Operating Systems"],
   },
 ];
 
