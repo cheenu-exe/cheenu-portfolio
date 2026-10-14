@@ -119,25 +119,6 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/cheenu-exe/vulnerability-scanner-dashboard",
   },
-  {
-    id: "mysti-ai",
-    name: "MYSTI AI",
-    accent: "#06b6d4",
-    short:
-      "A personal AI assistant project exploring the use of AI APIs within a custom application.",
-    description:
-      "Exploring the use of AI APIs within a custom application for personal assistance.",
-    tags: ["Python", "Google Gemini API"],
-    architecture: [
-      "Python-based AI assistant",
-      "Google Gemini API integration",
-      "Custom application wrapper",
-    ],
-    results: [
-      "Personal AI assistant with API integration",
-    ],
-    github: "https://github.com/cheenu-exe/mysti-ai",
-  },
 ];
 
 export type Experience = {
