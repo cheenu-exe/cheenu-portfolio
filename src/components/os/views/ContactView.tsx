@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Copy, Check, Linkedin } from "lucide-react";
 import { toast } from "sonner";
 import { contact, projects, experience, education, stackGroups } from "@/data/portfolio";
@@ -9,6 +9,7 @@ export function ContactView() {
   const [copied, setCopied] = useState(false);
   const [typed, setTyped] = useState("");
   const [command, setCommand] = useState("");
+  const terminalOutputRef = useRef<HTMLDivElement>(null);
   const [terminalLines, setTerminalLines] = useState<string[]>([
     "Welcome to the terminal. Type \"help\" to see available commands.",
     "",
@@ -39,6 +40,11 @@ export function ContactView() {
     }, 50);
     return () => clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    const output = terminalOutputRef.current;
+    if (output) output.scrollTop = output.scrollHeight;
+  }, [terminalLines]);
 
   const copyEmail = async () => {
     try {
@@ -133,7 +139,7 @@ export function ContactView() {
         style={{ animationDelay: `${COMMAND.length * 50}ms`, animationFillMode: "both" }}
       >
         {/* LEFT SIDE: Connect Hub */}
-        <div className="flex-1 flex flex-col justify-between space-y-8">
+        <div className="min-w-0 flex-1 flex flex-col justify-between space-y-8">
           <div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 tracking-tight mb-3">
               Let's build something.
@@ -238,7 +244,7 @@ export function ContactView() {
         </div>
 
         {/* RIGHT SIDE: Retro Terminal Contact Area */}
-        <div className="w-full lg:w-[480px] xl:w-[540px] shrink-0 overflow-hidden rounded-xl border border-[#123d12] bg-black shadow-[0_0_28px_rgba(0,255,0,0.12)]">
+        <div className="w-full min-w-0 lg:flex-[1.08] lg:w-auto lg:max-w-[720px] shrink-0 overflow-hidden rounded-xl border border-[#123d12] bg-black shadow-[0_0_28px_rgba(0,255,0,0.10)]">
           <div className="flex items-center justify-between border-b border-[#1b8f1b] px-5 py-3">
             <span className="font-mono text-base font-bold tracking-wide text-[#39ff14]">CHEENU Terminal</span>
             <div className="flex items-center gap-2">
@@ -247,8 +253,8 @@ export function ContactView() {
               <span className="h-3 w-3 rounded-full bg-[#168b12]" />
             </div>
           </div>
-          <div className="flex max-h-[620px] min-h-[440px] flex-col p-4 sm:p-5 font-mono text-sm sm:text-base text-[#39ff14]">
-            <div className="min-h-0 flex-1 overflow-y-auto whitespace-pre-wrap break-words leading-7 [text-shadow:0_0_8px_rgba(57,255,20,0.2)]">
+          <div className="flex h-[540px] min-h-[420px] max-h-[72vh] flex-col p-4 sm:p-5 font-mono text-xs sm:text-sm text-[#39ff14]">
+            <div ref={terminalOutputRef} role="log" aria-live="polite" className="min-h-0 flex-1 overflow-y-auto overscroll-contain whitespace-pre-wrap break-words pr-1 leading-6 [text-shadow:0_0_6px_rgba(57,255,20,0.14)]">
               {terminalLines.map((line, index) => (
                 <div key={index} className={line.startsWith("$ ") ? "font-bold" : ""}>{line || "\u00a0"}</div>
               ))}
@@ -258,7 +264,7 @@ export function ContactView() {
                 event.preventDefault();
                 runCommand(command);
               }}
-              className="mt-2 flex shrink-0 items-center gap-2"
+              className="mt-3 flex shrink-0 items-center gap-2 border-t border-[#123d12] pt-3"
             >
               <span className="font-bold">$</span>
               <input
@@ -267,7 +273,7 @@ export function ContactView() {
                 onChange={(event) => setCommand(event.target.value)}
                 autoComplete="off"
                 spellCheck={false}
-                className="min-w-0 flex-1 border-0 bg-transparent text-[#39ff14] outline-none placeholder:text-[#1c8b16] focus:ring-0"
+                className="min-w-0 flex-1 border-0 bg-transparent py-1 text-[#39ff14] outline-none placeholder:text-[#1c8b16] focus:ring-0"
                 placeholder="type a command..."
               />
               <button type="submit" className="sr-only">Run command</button>
