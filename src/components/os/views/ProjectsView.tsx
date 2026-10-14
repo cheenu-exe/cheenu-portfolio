@@ -158,6 +158,13 @@ export function ProjectsView() {
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 mb-3 tracking-tight leading-snug">
                       {activeProject.name}
                     </h2>
+                    {activeProject.contributionTag && (
+                      <div className="mb-4">
+                        <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-[10px] sm:text-xs font-bold tracking-wider text-primary">
+                          {activeProject.contributionTag}
+                        </span>
+                      </div>
+                    )}
                     <p className="text-base sm:text-lg text-foreground/80 leading-relaxed font-normal">
                       {activeProject.description}
                     </p>
