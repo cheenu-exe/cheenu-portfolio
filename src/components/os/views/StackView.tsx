@@ -6,60 +6,48 @@ const COMMAND = "npm list -g --depth=0";
 type StackItem = { name: string; url?: string; Icon?: any; color?: string };
 
 const stackItems: StackItem[] = [
-  // AI / ML
-  { name: "LangChain", url: "https://cdn.simpleicons.org/langchain/white" },
-  {
-    name: "LangGraph",
-    url: "https://unpkg.com/@lobehub/icons-static-svg@latest/icons/langgraph-color.svg",
-  },
-  {
-    name: "CrewAI",
-    url: "https://unpkg.com/@lobehub/icons-static-svg@latest/icons/crewai-color.svg",
-  },
-  { name: "HuggingFace", url: "https://cdn.simpleicons.org/huggingface/FFD21E" },
-  { name: "Ollama", url: "https://cdn.simpleicons.org/ollama/white" },
-  { name: "ChromaDB", Icon: Database, color: "#ec4899" },
-  { name: "Pinecone", Icon: Database, color: "#06b6d4" },
-  { name: "Scikit-learn", url: "https://cdn.simpleicons.org/scikitlearn/F7931E" },
-  { name: "TensorFlow", url: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
-  { name: "Keras", url: "https://cdn.simpleicons.org/keras/D00000" },
-  { name: "PyTorch", url: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
-  { name: "Langfuse", Icon: Activity, color: "#fbbf24" },
-
-  // Languages
+  // Languages & Web
   { name: "Python", url: "https://cdn.simpleicons.org/python/3776AB" },
+  { name: "C++", url: "https://cdn.simpleicons.org/cplusplus/00599C" },
   { name: "JavaScript", url: "https://cdn.simpleicons.org/javascript/F7DF1E" },
   { name: "SQL", Icon: Database, color: "#3b82f6" },
+  { name: "HTML", url: "https://cdn.simpleicons.org/html5/E34F26" },
+  { name: "CSS", url: "https://cdn.simpleicons.org/css/663399" },
 
-  // Frontend
-  { name: "React", url: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "Next.js", url: "https://cdn.simpleicons.org/nextdotjs/white" },
-  { name: "Tailwind CSS", url: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
-  { name: "Streamlit", url: "https://cdn.simpleicons.org/streamlit/FF4B4B" },
-
-  // Backend
-  { name: "FastAPI", url: "https://cdn.simpleicons.org/fastapi/009688" },
+  // Frameworks & Databases
   { name: "Flask", url: "https://cdn.simpleicons.org/flask/white" },
-  { name: "Node.js", url: "https://cdn.simpleicons.org/nodedotjs/339933" },
-  { name: "REST APIs", Icon: Code, color: "#8b5cf6" },
+  { name: "FastAPI", url: "https://cdn.simpleicons.org/fastapi/009688" },
+  { name: "SQLite", url: "https://cdn.simpleicons.org/sqlite/003B57" },
+  { name: "MySQL", url: "https://cdn.simpleicons.org/mysql/4479A1" },
 
-  // Data
-  { name: "NumPy", url: "https://cdn.simpleicons.org/numpy/white" },
-  { name: "Pandas", url: "https://cdn.simpleicons.org/pandas/white" },
-  { name: "Web Scraping", Icon: TerminalSquare, color: "#14b8a6" },
-  { name: "Pydantic v2", url: "https://cdn.simpleicons.org/pydantic/E92063" },
+  // Cybersecurity & Networking
+  { name: "Linux", url: "https://cdn.simpleicons.org/linux/FCC624" },
+  { name: "Nmap", Icon: TerminalSquare, color: "#22c55e" },
+  { name: "Gobuster", Icon: TerminalSquare, color: "#14b8a6" },
+  { name: "FFUF", Icon: TerminalSquare, color: "#06b6d4" },
+  { name: "WhatWeb", Icon: TerminalSquare, color: "#8b5cf6" },
+  { name: "Computer Networks", Icon: Activity, color: "#06b6d4" },
+  { name: "Cryptography", Icon: Brain, color: "#a78bfa" },
 
-  // Infrastructure & Cloud
+  // Infrastructure & Tools
   { name: "Docker", url: "https://cdn.simpleicons.org/docker/2496ED" },
   { name: "Git", url: "https://cdn.simpleicons.org/git/F05032" },
   { name: "GitHub", url: "https://cdn.simpleicons.org/github/white" },
-  { name: "MySQL", url: "https://cdn.simpleicons.org/mysql/4479A1" },
+  { name: "Nginx", url: "https://cdn.simpleicons.org/nginx/009639" },
+  { name: "Vercel", url: "https://cdn.simpleicons.org/vercel/white" },
+  { name: "Render", Icon: Cloud, color: "#8b5cf6" },
+
+  // Core Computer Science
+  { name: "Object-Oriented Programming", Icon: Code, color: "#f97316" },
+  { name: "Data Structures & Algorithms", Icon: Cpu, color: "#eab308" },
+  { name: "DBMS", Icon: Database, color: "#3b82f6" },
+  { name: "Operating Systems", Icon: TerminalSquare, color: "#22c55e" },
 ];
 
 // Split into 3 visually appealing rows
-const row1 = stackItems.slice(0, 11);
-const row2 = stackItems.slice(11, 22);
-const row3 = stackItems.slice(22);
+const row1 = stackItems.slice(0, 9);
+const row2 = stackItems.slice(9, 18);
+const row3 = stackItems.slice(18);
 
 export function StackView() {
   const [typed, setTyped] = useState("");
