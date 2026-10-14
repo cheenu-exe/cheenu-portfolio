@@ -9,11 +9,13 @@ export type Project = {
   architecture: string[];
   results?: string[];
   placeholder?: boolean;
+  contributionTag?: string;
 };
 
 export const projects: Project[] = [
   {
     id: "forge-ide",
+    contributionTag: "AI-ASSISTED",
     name: "FORGE IDE",
     accent: "#10b981",
     short:
@@ -34,6 +36,7 @@ export const projects: Project[] = [
   },
   {
     id: "sentinel",
+    contributionTag: "HANDS-ON PROJECT",
     name: "SENTINEL",
     accent: "#f97316",
     short:
@@ -54,6 +57,7 @@ export const projects: Project[] = [
   },
   {
     id: "ecdats",
+    contributionTag: "CONCEPT & WORKFLOW DESIGN",
     name: "ECDAT",
     accent: "#3b82f6",
     short:
@@ -76,6 +80,7 @@ export const projects: Project[] = [
   },
   {
     id: "ai-bias-detector",
+    contributionTag: "AI-ASSISTED PROTOTYPE",
     name: "AI BIAS DETECTOR",
     accent: "#8b5cf6",
     short:
@@ -95,6 +100,7 @@ export const projects: Project[] = [
   },
   {
     id: "vulnerability-scanner-dashboard",
+    contributionTag: "SELF-DEVELOPED · IN PROGRESS",
     name: "VULNERABILITY SCANNER DASHBOARD",
     accent: "#ec4899",
     short:
