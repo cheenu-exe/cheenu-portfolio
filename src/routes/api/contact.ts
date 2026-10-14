@@ -79,10 +79,14 @@ export const Route = createFileRoute("/api/contact")({
           }
 
           const resend = new Resend(key);
+          // Use a verified sender domain for production. The Resend onboarding
+          // sender is limited to the account owner's verified email address.
+          const from = process.env.CONTACT_FROM_EMAIL || "Portfolio Contact Form <onboarding@resend.dev>";
+          const to = process.env.CONTACT_TO_EMAIL || "cheenu.exe@gmail.com";
 
           const { data, error } = await resend.emails.send({
-            from: "Portfolio Contact Form <onboarding@resend.dev>",
-            to: "cheenuLive@gmail.com",
+            from,
+            to,
             subject: `New Portfolio Message from ${name}`,
             replyTo: email,
             text: `You received a new message from your portfolio contact form!\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
