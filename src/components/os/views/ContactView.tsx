@@ -28,14 +28,6 @@ export function ContactView() {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const openEmailFallback = () => {
-    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
-    );
-    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
-  };
-
   const send = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -57,9 +49,7 @@ export function ContactView() {
 
       if (!res.ok) {
         const errorText = await res.text();
-        console.error("[contact] API request failed:", res.status, errorText);
-        toast.error("Email service unavailable — opening your email app instead.");
-        openEmailFallback();
+        toast.error(errorText || "Message could not be sent. Please try again later.");
         return;
       }
 
@@ -67,8 +57,7 @@ export function ContactView() {
       toast.success("message sent — cheenu will reply soon");
     } catch (err) {
       console.error("[contact] Network request failed:", err);
-      toast.error("Could not reach the email service — opening your email app instead.");
-      openEmailFallback();
+      toast.error("Could not reach the contact service. Please try again later.");
     } finally {
       setSending(false);
     }
