@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Copy, Check, Linkedin } from "lucide-react";
+import { Copy, Check, Linkedin, Mail, Terminal, FileText } from "lucide-react";
 import { toast } from "sonner";
 import { contact } from "@/data/portfolio";
 
@@ -11,6 +11,7 @@ export function ContactView() {
   const [senderEmail, setSenderEmail] = useState("");
   const [message, setMessage] = useState("");
   const [messageCopied, setMessageCopied] = useState(false);
+  const [generatedMessage, setGeneratedMessage] = useState("");
 
   const [typed, setTyped] = useState("");
 
@@ -31,20 +32,42 @@ export function ContactView() {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const copyPreparedMessage = async () => {
+  const generateMessage = () => {
     if (!name.trim() || !senderEmail.trim() || !message.trim()) {
       toast.error("Enter your name, email, and message first.");
       return;
     }
-    const prepared = `To: ${contact.email}\nSubject: Portfolio message from ${name.trim()}\n\nName: ${name.trim()}\nEmail: ${senderEmail.trim()}\n\nMessage:\n${message.trim()}`;
+    setGeneratedMessage(
+      `To: ${contact.email}\nSubject: Portfolio message from ${name.trim()}\n\nName: ${name.trim()}\nEmail: ${senderEmail.trim()}\n\nMessage:\n${message.trim()}`,
+    );
+    setMessageCopied(false);
+    toast.success("Message generated.");
+  };
+
+  const copyPreparedMessage = async () => {
+    if (!generatedMessage) {
+      toast.error("Generate your message first.");
+      return;
+    }
     try {
-      await navigator.clipboard.writeText(prepared);
+      await navigator.clipboard.writeText(generatedMessage);
       setMessageCopied(true);
-      toast.success("Formatted message copied. Paste it into your email.");
+      toast.success("Message copied to clipboard.");
       setTimeout(() => setMessageCopied(false), 1800);
     } catch {
       toast.error("Clipboard access failed. Check your browser permissions.");
     }
+  };
+
+  const openGmail = () => {
+    if (!generatedMessage) {
+      toast.error("Generate your message first.");
+      return;
+    }
+    const subject = `Portfolio message from ${name.trim()}`;
+    const body = `Name: ${name.trim()}\nEmail: ${senderEmail.trim()}\n\nMessage:\n${message.trim()}`;
+    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -173,64 +196,50 @@ export function ContactView() {
             <span className="ml-3 font-mono text-xs text-white/50">cheenu@portfolio: ~/contact</span>
           </div>
           <div className="p-6 sm:p-8 font-mono">
-            <div className="text-xs text-emerald-400 mb-2">CONTACT_PROTOCOL v1.0</div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Initialize connection</h3>
-            <p className="text-sm text-white/55 leading-relaxed mb-6">
-              No backend required. Prepare a message, then copy it and send it from your preferred email client.
+            <div className="mb-2 flex items-center gap-2 text-xs text-emerald-400">
+              <Terminal className="h-4 w-4" /> CONTACT_PROTOCOL v1.0
+            </div>
+            <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">Initialize connection</h3>
+            <p className="mb-6 text-sm leading-relaxed text-white/55">
+              Compose your message here. Generate it, then copy it or open Gmail with the details filled in.
             </p>
             <div className="space-y-4">
               <div className="space-y-1.5">
                 <label htmlFor="terminal-contact-name" className="block text-xs text-white/60">NAME</label>
-                <input
-                  id="terminal-contact-name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  maxLength={100}
-                  placeholder="Your name"
-                  className="w-full rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60"
-                />
+                <input id="terminal-contact-name" value={name} onChange={(e) => { setName(e.target.value); setGeneratedMessage(""); }} maxLength={100} placeholder="Your name" className="w-full rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60" />
               </div>
               <div className="space-y-1.5">
                 <label htmlFor="terminal-contact-email" className="block text-xs text-white/60">YOUR EMAIL</label>
-                <input
-                  id="terminal-contact-email"
-                  type="email"
-                  value={senderEmail}
-                  onChange={(e) => setSenderEmail(e.target.value)}
-                  maxLength={320}
-                  placeholder="you@example.com"
-                  className="w-full rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60"
-                />
+                <input id="terminal-contact-email" type="email" value={senderEmail} onChange={(e) => { setSenderEmail(e.target.value); setGeneratedMessage(""); }} maxLength={320} placeholder="you@example.com" className="w-full rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60" />
               </div>
               <div className="space-y-1.5">
                 <label htmlFor="terminal-contact-message" className="block text-xs text-white/60">MESSAGE</label>
-                <textarea
-                  id="terminal-contact-message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  maxLength={5000}
-                  rows={4}
-                  placeholder="Type your message..."
-                  className="w-full resize-y rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60"
-                />
+                <textarea id="terminal-contact-message" value={message} onChange={(e) => { setMessage(e.target.value); setGeneratedMessage(""); }} maxLength={5000} rows={4} placeholder="Type your message..." className="w-full resize-y rounded-lg border border-white/10 bg-black/40 px-3.5 py-3 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald-400/60" />
               </div>
               <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-xs leading-relaxed">
-                <div className="text-white/40 mb-1">$ recipient --show</div>
+                <div className="mb-1 text-white/40">$ recipient --show</div>
                 <div className="break-all text-emerald-300">{contact.email}</div>
                 <div className="mt-3 text-white/40">$ status</div>
-                <div className="text-white/70">Ready to compose locally</div>
+                <div className="text-white/70">{generatedMessage ? "Message generated — ready to send" : "Waiting for input"}</div>
               </div>
-              <button
-                type="button"
-                onClick={copyPreparedMessage}
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-emerald-400/40 bg-emerald-400/10 px-5 py-3.5 text-sm font-bold text-emerald-300 transition-all hover:bg-emerald-400/20 active:scale-[0.98]"
-              >
-                {messageCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {messageCopied ? "Message Copied" : "Generate & Copy Message"}
+              {generatedMessage && (
+                <div className="max-h-36 overflow-auto whitespace-pre-wrap rounded-lg border border-white/10 bg-black/40 p-3 text-xs leading-relaxed text-white/70">
+                  {generatedMessage}
+                </div>
+              )}
+              <button type="button" onClick={generateMessage} className="flex w-full items-center justify-center gap-2 rounded-lg border border-emerald-400/40 bg-emerald-400/10 px-5 py-3 text-sm font-bold text-emerald-300 transition-all hover:bg-emerald-400/20 active:scale-[0.98]">
+                <FileText className="h-4 w-4" /> Generate Message
               </button>
-              <p className="text-center text-[11px] text-white/40">
-                Copies a formatted email — nothing is sent automatically.
-              </p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <button type="button" onClick={copyPreparedMessage} disabled={!generatedMessage} className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-bold text-white transition-all hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40">
+                  {messageCopied ? <Check className="h-4 w-4 text-emerald-300" /> : <Copy className="h-4 w-4" />}
+                  {messageCopied ? "Copied" : "Copy Message"}
+                </button>
+                <button type="button" onClick={openGmail} disabled={!generatedMessage} className="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-40">
+                  <Mail className="h-4 w-4" /> Open Gmail
+                </button>
+              </div>
+              <p className="text-center text-[11px] text-white/40">Gmail opens in a new browser tab. You review and send the email yourself.</p>
             </div>
           </div>
         </div>
