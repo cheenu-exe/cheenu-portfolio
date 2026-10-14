@@ -159,7 +159,7 @@ export function ContactView() {
               </a>
 
               <a
-                href="https://instagram.com/scheenu08"
+                href="https://www.instagram.com/mystivox.lol/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 px-5 py-3 rounded-xl bg-panel hover:bg-panel-2 border border-border hover:border-primary/50 transition-all font-mono text-xs sm:text-sm font-bold text-foreground group"
@@ -195,6 +195,7 @@ export function ContactView() {
                 </label>
                 <input
                   id="contact-name"
+                  required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="John Doe"
@@ -212,6 +213,7 @@ export function ContactView() {
                 </label>
                 <input
                   id="contact-email"
+                  required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="john@example.com"
@@ -230,6 +232,7 @@ export function ContactView() {
                 </label>
                 <textarea
                   id="contact-message"
+                  required
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="How can I help you?"
