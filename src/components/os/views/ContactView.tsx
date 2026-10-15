@@ -244,17 +244,17 @@ export function ContactView() {
         </div>
 
         {/* RIGHT SIDE: Retro Terminal Contact Area */}
-        <div className="w-full min-w-0 lg:flex-[1.08] lg:w-auto lg:max-w-[720px] shrink-0 overflow-hidden rounded-xl border border-[#123d12] bg-black shadow-[0_0_28px_rgba(0,255,0,0.10)]">
-          <div className="flex items-center justify-between border-b border-[#1b8f1b] px-5 py-3">
-            <span className="font-mono text-base font-bold tracking-wide text-[#39ff14]">CHEENU Terminal</span>
+        <div className="w-full min-w-0 lg:flex-[1.08] lg:w-auto lg:max-w-[720px] shrink-0 overflow-hidden rounded-2xl border border-border/70 bg-panel/80 shadow-xl backdrop-blur-md">
+          <div className="flex items-center justify-between border-b border-border/70 bg-panel-2/80 px-5 py-3">
+            <span className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-primary">CHEENU Terminal</span>
             <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-[#168b12]" />
-              <span className="h-3 w-3 rounded-full bg-[#168b12]" />
-              <span className="h-3 w-3 rounded-full bg-[#168b12]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/90" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/90" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/90" />
             </div>
           </div>
-          <div className="flex h-[540px] min-h-[420px] max-h-[72vh] flex-col p-4 sm:p-5 font-mono text-xs sm:text-sm text-[#39ff14]">
-            <div ref={terminalOutputRef} role="log" aria-live="polite" className="min-h-0 flex-1 overflow-y-auto overscroll-contain whitespace-pre-wrap break-words pr-1 leading-6 [text-shadow:0_0_6px_rgba(57,255,20,0.14)]">
+          <div className="flex h-[540px] min-h-[420px] max-h-[72vh] flex-col bg-background/30 p-4 sm:p-5 font-mono text-xs sm:text-sm text-foreground/85">
+            <div ref={terminalOutputRef} role="log" aria-live="polite" className="min-h-0 flex-1 overflow-y-auto overscroll-contain whitespace-pre-wrap break-words pr-1 leading-6 ">
               {terminalLines.map((line, index) => (
                 <div key={index} className={line.startsWith("$ ") ? "font-bold" : ""}>{line || "\u00a0"}</div>
               ))}
@@ -264,7 +264,7 @@ export function ContactView() {
                 event.preventDefault();
                 runCommand(command);
               }}
-              className="mt-3 flex shrink-0 items-center gap-2 border-t border-[#123d12] pt-3"
+              className="mt-3 flex shrink-0 items-center gap-2 border-t border-border/70 pt-3 text-primary"
             >
               <span className="font-bold">$</span>
               <input
@@ -273,7 +273,7 @@ export function ContactView() {
                 onChange={(event) => setCommand(event.target.value)}
                 autoComplete="off"
                 spellCheck={false}
-                className="min-w-0 flex-1 border-0 bg-transparent py-1 text-[#39ff14] outline-none placeholder:text-[#1c8b16] focus:ring-0"
+                className="min-w-0 flex-1 border-0 bg-transparent py-1 text-foreground outline-none placeholder:text-muted-foreground/70 focus:ring-0"
                 placeholder="type a command..."
               />
               <button type="submit" className="sr-only">Run command</button>
