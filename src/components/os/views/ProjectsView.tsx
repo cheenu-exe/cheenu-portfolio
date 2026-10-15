@@ -246,19 +246,7 @@ export function ProjectsView() {
 
                 {/* Footer Actions */}
                 <div className="pt-6 border-t border-border/50 flex items-center justify-between">
-                  {activeProject.github ? (
-                    <a
-                      href={activeProject.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group flex items-center gap-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 px-5 py-3 font-mono text-xs sm:text-sm text-blue-400 font-bold transition-all hover:bg-blue-500 hover:text-white"
-                    >
-                      <Github className="h-4 w-4" />
-                      <span>VIEW_SOURCE_CODE</span>
-                    </a>
-                  ) : (
-                    <div />
-                  )}
+                  <div />
                   <div className="flex items-center gap-2.5 opacity-80">
                     <div className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping" />
                     <span className="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">
