@@ -145,7 +145,7 @@ export function ContactView() {
               Let's build something.
             </h2>
             <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
-              Open to AI engineering roles, internships, freelance projects, and tech discussions.
+              Building intelligent systems, exploring AI security, and turning ideas into practical solutions.
               Reach out directly using the form or connect through socials below.
             </p>
 
