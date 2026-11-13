@@ -178,7 +178,7 @@ export function PdfWindow({
               <div className="flex items-center">
                 <a
                   href={pdfUrl}
-                  download="Srinivasan_Resume.pdf"
+                  download="Srinivasan-Resume-2026.pdf"
                   className="flex items-center gap-2 rounded-md bg-white/10 hover:bg-white/20 border border-white/5 px-3 py-1.5 text-xs font-medium text-white/90 transition-all shadow-sm hover:text-white"
                   onClick={(e) => e.stopPropagation()}
                 >
