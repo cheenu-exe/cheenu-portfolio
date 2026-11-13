@@ -127,7 +127,7 @@ export function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
       <PdfWindow
         isOpen={isPdfOpen}
         onClose={() => setIsPdfOpen(false)}
-        pdfUrl="/Srinivasan-Resume-2026.pdf"
+        pdfUrl="/Joshua-Resume.pdf"
       />
     </div>
   );
